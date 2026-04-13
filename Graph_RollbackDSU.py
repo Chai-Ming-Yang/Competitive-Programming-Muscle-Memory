@@ -32,3 +32,5 @@ class RollbackDSU:
       self.par[b] = pb
       self.sz[a] = sa
       self.comp += 1
+
+dsu = RollbackDSU(n)
