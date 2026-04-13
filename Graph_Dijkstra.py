@@ -1,4 +1,4 @@
-def djikstras(src, n):
+def dijkstras(src, n):
   dist = [float('inf')] * n
   dist[src] = 0
   pq = [(0, src)]
