@@ -5,9 +5,9 @@ def dijkstra(src, n):
 
   while pq:
     d, u = heapq.heappop(pq)
-    if d > dist[u]: continue
+    if dist[u] < d: continue
     for v, wt in adj[u]:
-      if d + wt < dist[v]:
-        dist[v] = d + wt
-        heapq.heappush(pq, (dist[v], v))
+      if dist[v] < d + wt: continue
+      dist[v] = d + wt
+      heapq.heappush(pq, (dist[v], v))
   return dist
