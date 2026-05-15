@@ -8,7 +8,7 @@ len_cycle = num_events(lcm)  # until collision
 
 cycle = []
 t = 1
-while cycle < len_cycle:
+while len(cycle) < len_cycle:
   if t % tick_x == 0 and t % tick_y == 0:
     cycle.append('both')
   elif t % tick_x == 0:
