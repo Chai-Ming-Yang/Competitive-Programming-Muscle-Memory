@@ -38,3 +38,11 @@ def tarjan(n, adj):
       dfs(i)
     
   return comp, cid
+
+comp, cid = tarjan(n, adj)
+dag_adj = [set() for _ in range(cid)]
+for u in adj:
+  for v in adj[u]:
+    if comp[u] != comp[v]:
+      dag_adj[u].add(v)
+dag_adj = list(map(list, dag_adj))
