@@ -8,8 +8,7 @@ def tarjan(n, adj):
   st = []
   comp = [-1] * n
 
-  idc = 0
-  cid = 0
+  idc = cid = 0
 
   def dfs(u):
     nonlocal idc, cid
@@ -25,14 +24,14 @@ def tarjan(n, adj):
       elif on[v]:
         low[u] = min(low[u], ids[v])
 
-    if ids[u] == low[u]:
-        while True:
-          v = st.pop()
-          on[v] = False
-          comp[v] = cid
-          if v == u:
-            break
-        cid += 1
+    if ids[u] != low[u]: return
+    while True:
+      v = st.pop()
+      on[v] = False
+      comp[v] = cid
+      if v == u:
+        break
+    cid += 1
 
   for i in range(n):
     if ids[i] == -1:
