@@ -14,8 +14,8 @@ def tarjan(n, adj):
     nonlocal idc, cid
     ids[u] = low[u] = idc
     idc += 1
-    st.append(u)
     on[u] = True
+    st.append(u)
 
     for v in adj[u]:
       if ids[v] == -1:
@@ -29,14 +29,12 @@ def tarjan(n, adj):
       v = st.pop()
       on[v] = False
       comp[v] = cid
-      if v == u:
-        break
+      if v == u:  break
     cid += 1
 
   for i in range(n):
     if ids[i] == -1:
       dfs(i)
-    
   return comp, cid
 
 comp, cid = tarjan(n, adj)
