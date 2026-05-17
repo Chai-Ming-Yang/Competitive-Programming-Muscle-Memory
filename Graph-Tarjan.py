@@ -29,7 +29,7 @@ def tarjan(n, adj):
       v = st.pop()
       on[v] = False
       comp[v] = cid
-      if v == u:  break
+      if u == v:  break
     cid += 1
 
   for i in range(n):
@@ -41,6 +41,7 @@ comp, cid = tarjan(n, adj)
 dag_adj = [set() for _ in range(cid)]
 for u in adj:
   for v in adj[u]:
-    if comp[u] != comp[v]:
-      dag_adj[u].add(v)
+    cu, cv = compu[u], comp[v]
+    if cu != cv:
+      dag_adj[cu].add(cv)
 dag_adj = list(map(list, dag_adj))
