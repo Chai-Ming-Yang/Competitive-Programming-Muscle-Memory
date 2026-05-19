@@ -12,3 +12,7 @@ def bs(lo, hi):
     else: hi = mid - 1
   return hi
 # (lo = mid) : +1
+
+import bisect
+idx = bisect.bisect_left(a, x)
+idx = bisect.bisect_right(a, x)  # 2nd bs(lo, hi) + 1
