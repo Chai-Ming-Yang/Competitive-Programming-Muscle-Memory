@@ -34,3 +34,26 @@ class RollbackDSU:
       self.comp += 1
 
 dsu = RollbackDSU(n)
+
+seg = [[] for _ in range(n*4)]
+def add(node, nl, nr, l, r, item):
+    if r <= nl or nr <= l: return
+    if l <= nl and nr <= r:
+        seg[node].append(item); return
+    mid = (nl + nr) // 2
+    add(node*2, nl, mid, l, r, item)
+    add(node*2+1, mid, nr, l, r, item)
+
+def dfs(node, nl, nr):
+    snap = dsu.snapshot()
+    for u, v in seg[node]:
+        dsu.union(u, v)
+    if nl + 1 == nr:
+        if ops[nl] == '?':
+            res.append(dsu.comp)
+    else:
+        mid = (nl + nr)//2
+        dfs(node*2, nl, mid)
+        dfs(node*2 + 1, mid, nr)
+    dsu.rollback(snap)
+
